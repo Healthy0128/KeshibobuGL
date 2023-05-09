@@ -12,42 +12,7 @@
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/keshibobuGL.json", {onProgress: UnityProgress});
     </script>
   </head>
-  <script>
-  function isEventInsideUnityCanvas(event) {
-    var canvas = document.querySelector("#canvas");
-    if (!canvas) {
-      return false;
-    }
-
-    var rect = canvas.getBoundingClientRect();
-    var x = event.clientX;
-    var y = event.clientY;
-
-    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-  }
-
-  window.addEventListener("keydown", function(event) {
-    if (!isEventInsideUnityCanvas(event)) {
-      return;
-    }
-
-    var blockedKeys = [
-      "KeyJ", "KeyT", "KeyW", "KeyA", "KeyS", "KeyD",
-      "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
-      "ShiftLeft", "ShiftRight"
-    ];
-
-    if (event.ctrlKey) {
-      blockedKeys.push("KeyD");
-    }
-
-    if (blockedKeys.includes(event.code)) {
-      event.stopPropagation();
-    }
-  }, true);
-</script>
-
-
+ 
   <body>
     <div class="webgl-content">
       <div id="unityContainer" style="width: 960px; height: 600px"></div>
