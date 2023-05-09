@@ -14,7 +14,7 @@
   </head>
   <script>
   function isEventInsideUnityCanvas(event) {
-    var canvas = document.querySelector("#canvas"); // WebGLのCanvas要素のIDを指定
+    var canvas = document.querySelector("#canvas");
     if (!canvas) {
       return false;
     }
@@ -31,18 +31,22 @@
       return;
     }
 
-    // ここに無効にしたいキーコードを追加
     var blockedKeys = [
       "KeyJ", "KeyT", "KeyW", "KeyA", "KeyS", "KeyD",
       "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
-      "ShiftLeft", "ShiftRight", "ControlLeft", "ControlRight"
+      "ShiftLeft", "ShiftRight"
     ];
 
-    if (blockedKeys.includes(event.code)) {
-      event.preventDefault();
+    if (event.ctrlKey) {
+      blockedKeys.push("KeyD");
     }
-  }, false);
+
+    if (blockedKeys.includes(event.code)) {
+      event.stopPropagation();
+    }
+  }, true);
 </script>
+
 
   <body>
     <div class="webgl-content">
